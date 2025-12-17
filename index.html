@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EFS Explorer 🔐</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+  	<div id="headId" >
+    <h1>🔐 EFS Explorer</h1>
+    
+    <button id="theme-toggle" aria-label="Toggle Theme">
+  <span class="icon sun-icon"></span>
+  <span class="icon moon-icon"></span>
+</button>
+<!-- Lock Button -->
+<button id="lock-button" aria-label="Lock Page" style="margin-left: 10px; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">
+  🔒
+</button>
+</div>
+    <div id="auth-section">
+      <input type="password" id="password-input" placeholder="Enter password" />
+      <button id="unlock-btn">Unlock</button>
+	  
+    </div>
+    
+  </header>
+
+  <main>
+  <!-- Drag & Drop Zone -->
+<section id="upload-section">
+  <div id="drop-zone">
+    <p>Drag & drop files here</p>
+    <input type="file" id="file-input" multiple hidden />
+    <label id="file-label">or click to upload</label>
+  </div>
+</section>
+
+    <!-- File Explorer List -->
+    <section id="file-list-section">
+      <h2>Stored Files</h2>
+      <ul id="file-list">
+        <!-- Files will be dynamically added here -->
+      </ul>
+    </section>
+	<section id="unlock-section">
+ 
+
+  <button id="reset-btn" class="danger">Reset</button>
+  <div id="reset-confirmation" style="display:none; margin-top:1rem;">
+    <span id="reset-message"></span>
+    <br/>
+    <button id="reset-yes" class="danger" disabled>Yes</button>
+    <button id="reset-no">No</button>
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <button id="add-file-btn">+ Add Files</button>
+    <button id="download-btn">Download Selected</button>
+    <button id="delete-btn">Delete Selected</button>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="crypto-helper.js"></script>
+  <script src="db.js"></script>
+  <script src="script.js"></script>
+  <script>
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Load saved theme preference
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+  }
+
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+
+    // Save theme preference
+    if (body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
+    }
+  });
+</script>
+</body>
+</html>
